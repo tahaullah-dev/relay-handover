@@ -4,7 +4,7 @@
 > Relay ingests GitHub, Jira, Slack, and Notion, deterministically cross-verifies claims against raw artifacts, and generates role-tailored, audit-ready handovers grounded in mathematical truth.
 
 [![Netlify Status](https://img.shields.io/badge/Frontend-Netlify-00C7B7?logo=netlify&logoColor=white&style=for-the-badge)](https://relay-traceforge.netlify.app)
-[![Render Status](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=black&style=for-the-badge)](https://relay-api.onrender.com)
+[![Render Status](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=black&style=for-the-badge)](https://relay-api-wzvo.onrender.com)
 [![Neon Database](https://img.shields.io/badge/Database-Neon%20Postgres-00E599?logo=postgresql&logoColor=white&style=for-the-badge)](https://neon.tech)
 [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini%20Flash-4285F4?logo=googlegemini&logoColor=white&style=for-the-badge)](https://ai.google.dev/)
 [![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20TypeScript-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://react.dev/)
@@ -17,11 +17,11 @@
 | Service | URL | Status | Description |
 |---|---|---|---|
 | **Web App** | [https://relay-traceforge.netlify.app](https://relay-traceforge.netlify.app) | 🟢 Live | React 18, Vite, Tailwind CSS, Responsive SPA |
-| **REST API** | [https://relay-api.onrender.com](https://relay-api.onrender.com) | 🟢 Live | FastAPI, Uvicorn, Python 3.13.0 |
-| **API Docs (Swagger)** | [https://relay-api.onrender.com/docs](https://relay-api.onrender.com/docs) | 🟢 Interactive | OpenAPI 3.1 interactive endpoint documentation |
+| **REST API** | [https://relay-api-wzvo.onrender.com](https://relay-api-wzvo.onrender.com) | 🟢 Live | FastAPI, Uvicorn, Python 3.13 *(first request wakes the free instance)* |
+| **API Docs (Swagger)** | [https://relay-api-wzvo.onrender.com/docs](https://relay-api-wzvo.onrender.com/docs) | 🟢 Interactive | OpenAPI 3.1 interactive endpoint documentation |
 | **Database** | Neon Serverless PostgreSQL | 🟢 Active | SSL pooled PostgreSQL in AWS Asia-Pacific (Singapore) |
 
-> 💡 **Instant Demo:** No login or account required! Visit the [Web App](https://relay-traceforge.netlify.app) to explore the pre-loaded **CampusConnect** handover dataset, inspect conflicting evidence, run AI reconstruction, and generate role-based briefings.
+> 💡 **Instant Demo:** No login or account required! Visit the [Web App](https://relay-traceforge.netlify.app) to explore the pre-loaded **CampusConnect** handover dataset, inspect conflicting evidence, run AI reconstruction, and generate role-based briefings. *(Render free-tier instances may take ~30s on cold start).*
 
 ---
 
@@ -274,3 +274,4 @@ tests/test_relay.py::test_handover_role_filtering PASSED
 ## 👥 Built with ❤️ for the Hackathon by TraceForge
 Designed to make developer transitions seamless, honest, and stress-free.
 If Relay saved your onboarding, consider giving us a ⭐ on GitHub!
+
