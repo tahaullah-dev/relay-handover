@@ -32,6 +32,9 @@ def seed(db: Session) -> None:
         reconstruction_started_at=_dt("2026-11-01T18:12:00Z"),
         reconstruction_completed_at=_dt("2026-11-01T18:14:32Z"),
     ))
+    # Flush the project row first so PostgreSQL FK checks on all child tables
+    # (sources, source_records, claims, audit_events) pass in the same transaction.
+    db.flush()
 
     sources = [
         Source(id="src_github", project_id=PROJECT_ID, kind="github", name="GitHub",
@@ -48,6 +51,8 @@ def seed(db: Session) -> None:
                last_imported_at=_dt("2026-10-28T14:02:00Z"), is_synthetic=True),
     ]
     db.add_all(sources)
+    # Flush sources so source_records FK (source_id) is satisfied.
+    db.flush()
 
     R = [
         # --- GitHub records ---
@@ -151,6 +156,8 @@ def seed(db: Session) -> None:
         db.add(SourceRecord(id=rid, project_id=PROJECT_ID, source_id=sid, kind=kind,
                             external_id=ext, title=title, content=content, url=url,
                             author=author, timestamp=_dt(ts), meta=meta))
+    # Flush source records so evidence FK (record_id) is satisfied.
+    db.flush()
 
     # Claims: (id, statement, category, trust, review_status, related, note,
     #          dedupe, comment, corrected, reviewed_at, reviewed_by, evidence[(record, stance, excerpt)])
@@ -254,6 +261,8 @@ def seed(db: Session) -> None:
         for i, (rec_id, stance, excerpt) in enumerate(evs):
             db.add(Evidence(id=f"ev_{cid}_{i}", claim_id=cid, record_id=rec_id,
                             stance=stance, excerpt=excerpt))
+    # Flush claims+evidence before audit events (audit_events.project_id FK).
+    db.flush()
 
     audits = [
         ("2026-11-01T18:10:11Z", "Alex Chen", "sources.connected", "source", "src_github", None, "connected",
